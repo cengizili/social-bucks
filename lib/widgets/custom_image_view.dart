@@ -22,7 +22,7 @@ enum ImageType { svg, png, network, file, unknown }
 
 // ignore_for_file: must_be_immutable
 class CustomImageView extends StatelessWidget {
-  CustomImageView(
+  const CustomImageView(
       {this.imagePath,
       this.height,
       this.width,
@@ -36,27 +36,27 @@ class CustomImageView extends StatelessWidget {
       this.placeHolder = 'assets/images/image_not_found.png'});
 
   ///[imagePath] is required parameter for showing image
-  String? imagePath;
+  final String? imagePath;
 
-  double? height;
+  final double? height;
 
-  double? width;
+  final double? width;
 
-  Color? color;
+  final Color? color;
 
-  BoxFit? fit;
+  final BoxFit? fit;
 
   final String placeHolder;
 
-  Alignment? alignment;
+  final Alignment? alignment;
 
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
-  EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? margin;
 
-  BorderRadius? radius;
+  final BorderRadius? radius;
 
-  BoxBorder? border;
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {

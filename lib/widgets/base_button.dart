@@ -19,7 +19,7 @@ class BaseButton extends StatelessWidget {
 
   final String text;
 
-  final VoidCallback? onPressed;
+  final Future<void> Function()? onPressed;
 
   final ButtonStyle? buttonStyle;
 

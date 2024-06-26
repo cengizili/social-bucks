@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:social_bucks/screens/payment_requests/payments_page.dart';
+import 'package:social_bucks/screens/profile_page.dart';
+import 'package:social_bucks/screens/submissions/submissions_page.dart';
+import 'package:social_bucks/screens/tasks/tasks_page.dart';
+import 'package:social_bucks/services/navigation_service.dart';
+import 'package:social_bucks/widgets/locale_text.dart';
 import '../core/app_export.dart';
 
-enum BottomBarEnum { Home, Message, Saved, Profile }
-// ignore_for_file: must_be_immutable
+enum BottomBarEnum { Tasks, Submissions, Payments, Profile }
 
-// ignore_for_file: must_be_immutable
+extension BottomBarEnumX on BottomBarEnum {
+  Widget get page {
+    switch (this) {
+      case BottomBarEnum.Tasks:
+      return TasksPage();
+      case BottomBarEnum.Payments:
+      return PaymentsPage();
+      case BottomBarEnum.Submissions:
+      return SubmissionsPage();
+      case BottomBarEnum.Profile:
+      return ProfilePage();
+    }
+  }
+}
+
+
 class CustomBottomBar extends StatefulWidget {
   CustomBottomBar({this.onChanged});
 
@@ -13,9 +34,7 @@ class CustomBottomBar extends StatefulWidget {
   @override
   CustomBottomBarState createState() => CustomBottomBarState();
 }
-// ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class CustomBottomBarState extends State<CustomBottomBar> {
   int selectedIndex = 0;
 
@@ -24,25 +43,29 @@ class CustomBottomBarState extends State<CustomBottomBar> {
       icon: ImageConstant.imgNavHome,
       activeIcon: ImageConstant.imgNavHome,
       title: "Home",
-      type: BottomBarEnum.Home,
+      type: BottomBarEnum.Tasks,
+      route: AppRoutes.tasks, // Define your GetX route here
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavMessage,
-      activeIcon: ImageConstant.imgNavMessage,
-      title: "Message",
-      type: BottomBarEnum.Message,
+      activeIcon: ImageConstant.imgCheck,
+      title: "Submissions",
+      type: BottomBarEnum.Submissions,
+      route: AppRoutes.submissions, // Define your GetX route here
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavSaved,
       activeIcon: ImageConstant.imgNavSaved,
-      title: "Saved",
-      type: BottomBarEnum.Saved,
+      title: "Payment Requests",
+      type: BottomBarEnum.Payments,
+      route: AppRoutes.paymentRequests, // Define your GetX route here
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavProfile,
       activeIcon: ImageConstant.imgNavProfile,
       title: "Profile",
       type: BottomBarEnum.Profile,
+      route: AppRoutes.profile, // Define your GetX route here
     )
   ];
 
@@ -86,7 +109,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 3.v),
-                  child: Text(
+                  child: LocaleText(
                     bottomMenuList[index].title ?? "",
                     style: CustomTextStyles.labelLargeGray500_1.copyWith(
                       color: appTheme.gray500,
@@ -107,7 +130,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 2.v),
-                  child: Text(
+                  child: LocaleText(
                     bottomMenuList[index].title ?? "",
                     style: CustomTextStyles.labelLargePrimary_1.copyWith(
                       color: theme.colorScheme.primary,
@@ -122,29 +145,30 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         onTap: (index) {
           selectedIndex = index;
           widget.onChanged?.call(bottomMenuList[index].type);
+          // Nav.toNamed(bottomMenuList[index].route); // Navigate to the route
           setState(() {});
+          Get.toNamed(bottomMenuList[index].route);
+          print(Get.currentRoute);
         },
       ),
     );
   }
 }
-// ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class BottomMenuModel {
-  BottomMenuModel(
-      {required this.icon,
-      required this.activeIcon,
-      this.title,
-      required this.type});
+  BottomMenuModel({
+    required this.icon,
+    required this.activeIcon,
+    this.title,
+    required this.type,
+    required this.route,
+  });
 
   String icon;
-
   String activeIcon;
-
   String? title;
-
   BottomBarEnum type;
+  String route; // Add route property
 }
 
 class DefaultWidget extends StatelessWidget {

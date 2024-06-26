@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:social_bucks/widgets/locale_text.dart';
+import 'package:uuid/uuid.dart';
 import '../core/app_export.dart';
 import '../theme/custom_button_style.dart';
 import 'base_button.dart';
+
+class ButtonController extends GetxController {
+  RxBool isLoading = false.obs;
+}
 
 class CustomElevatedButton extends BaseButton {
   CustomElevatedButton(
@@ -9,8 +16,9 @@ class CustomElevatedButton extends BaseButton {
       this.decoration,
       this.leftIcon,
       this.rightIcon,
+      this.indicator,
+      super.onPressed,
       EdgeInsets? margin,
-      VoidCallback? onPressed,
       ButtonStyle? buttonStyle,
       Alignment? alignment,
       TextStyle? buttonTextStyle,
@@ -20,7 +28,6 @@ class CustomElevatedButton extends BaseButton {
       required String text})
       : super(
           text: text,
-          onPressed: onPressed,
           buttonStyle: buttonStyle,
           isDisabled: isDisabled,
           buttonTextStyle: buttonTextStyle,
@@ -32,9 +39,13 @@ class CustomElevatedButton extends BaseButton {
 
   final BoxDecoration? decoration;
 
+  final Widget? indicator;
+
   final Widget? leftIcon;
 
   final Widget? rightIcon;
+
+  final controller = Get.put(ButtonController(), tag: Uuid().v4());
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +63,33 @@ class CustomElevatedButton extends BaseButton {
         decoration: decoration,
         child: ElevatedButton(
           style: buttonStyle,
-          onPressed: isDisabled ?? false ? null : onPressed ?? () {},
-          child: Row(
+          onPressed:() async {
+            if (controller.isLoading.value)
+            return ;
+            controller.isLoading.value = true;
+            await onPressed?.call();
+            controller.isLoading.value = false;
+          },
+          child: Obx(() => Visibility(
+            visible: controller.isLoading.value,
+            child: Center(
+              child: indicator ?? CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            ),
+            replacement: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               leftIcon ?? const SizedBox.shrink(),
-              Text(
+              LocaleText(
                 text,
                 style: buttonTextStyle ??
                     CustomTextStyles.titleMediumErrorContainerSemiBold,
               ),
               rightIcon ?? const SizedBox.shrink()
             ],
-          ),
+          ))),
         ),
       );
 }

@@ -13,11 +13,11 @@ class AppbarLeadingImage extends StatelessWidget {
 
   EdgeInsetsGeometry? margin;
 
-  Function? onTap;
+  Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         onTap?.call();
       },

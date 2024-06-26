@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:social_bucks/widgets/custom_elevated_button.dart';
+import 'package:social_bucks/widgets/locale_text.dart';
+import 'package:uuid/uuid.dart';
 import '../core/app_export.dart';
 import 'base_button.dart';
 
@@ -9,7 +14,7 @@ class CustomOutlinedButton extends BaseButton {
       this.leftIcon,
       this.rightIcon,
       this.label,
-      VoidCallback? onPressed,
+      super.onPressed,
       ButtonStyle? buttonStyle,
       TextStyle? buttonTextStyle,
       bool? isDisabled,
@@ -20,7 +25,6 @@ class CustomOutlinedButton extends BaseButton {
       required String text})
       : super(
           text: text,
-          onPressed: onPressed,
           buttonStyle: buttonStyle,
           isDisabled: isDisabled,
           buttonTextStyle: buttonTextStyle,
@@ -38,6 +42,8 @@ class CustomOutlinedButton extends BaseButton {
 
   final Widget? label;
 
+  final controller = Get.put(ButtonController(), tag: Uuid().v4());
+
   @override
   Widget build(BuildContext context) {
     return alignment != null
@@ -54,20 +60,34 @@ class CustomOutlinedButton extends BaseButton {
         decoration: decoration,
         child: OutlinedButton(
           style: buttonStyle,
-          onPressed: isDisabled ?? false ? null : onPressed ?? () {},
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              leftIcon ?? const SizedBox.shrink(),
-              Text(
-                text,
-                style: buttonTextStyle ??
-                    CustomTextStyles.titleMediumPrimarySemiBold,
+          onPressed:() async {
+            if (controller.isLoading.value)
+            return ;
+            controller.isLoading.value = true;
+            await onPressed?.call();
+            controller.isLoading.value = false;
+          },
+          child: Obx(() => Visibility(
+            visible: !controller.isLoading.value,
+            replacement: Center(
+              child: CircularProgressIndicator(
+                color: theme.primaryColor,
               ),
-              rightIcon ?? const SizedBox.shrink()
-            ],
-          ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                leftIcon ?? const SizedBox.shrink(),
+                LocaleText(
+                  text,
+                  style: buttonTextStyle ??
+                      CustomTextStyles.titleMediumPrimarySemiBold,
+                ),
+                rightIcon ?? const SizedBox.shrink()
+              ],
+            ),
+          ),)
         ),
       );
 }

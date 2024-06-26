@@ -24,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       this.contentPadding,
       this.borderDecoration,
       this.fillColor,
+      this.onChanged,
       this.filled = true,
       this.validator})
       : super(
@@ -33,6 +34,8 @@ class CustomTextFormField extends StatelessWidget {
   final Alignment? alignment;
 
   final double? width;
+
+  void Function(String)? onChanged;
 
   final TextEditingController? scrollPadding;
 
@@ -97,6 +100,7 @@ class CustomTextFormField extends StatelessWidget {
               FocusManager.instance.primaryFocus?.unfocus();
             }
           },
+          onChanged: onChanged,
           autofocus: autofocus!,
           style: textStyle ?? theme.textTheme.titleMedium,
           obscureText: obscureText!,

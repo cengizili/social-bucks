@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "840516744035",
+    "firebase_url": "https://katchiu-fa0ab-default-rtdb.firebaseio.com",
+    "project_id": "katchiu-fa0ab",
+    "storage_bucket": "katchiu-fa0ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840516744035:android:0295e81ccf7bb09db0d956",
+        "android_client_info": {
+          "package_name": "com.example.social_bucks_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARlB-QLz4EoLO3v4vD_XfiwmVwgs2yiCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "840516744035-67fmigcnppuvlf4ot4imrm66ms57bo6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.socialbucks.app.testProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840516744035:android:f2129f71871e53c2b0d956",
+        "android_client_info": {
+          "package_name": "com.katchiu.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840516744035-i6tb6mkmetc0af3q7jhm06sktlnv4969.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.katchiu.app",
+            "certificate_hash": "f8a7a0657252d790069e83e9f2b8ae099801f6e7"
+          }
+        },
+        {
+          "client_id": "840516744035-illluvsrrdoa520n0t5j4rgsv78vhs36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.katchiu.app",
+            "certificate_hash": "43ba5eaafe060cf18d0e024b543e6b932c7dd6c0"
+          }
+        },
+        {
+          "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARlB-QLz4EoLO3v4vD_XfiwmVwgs2yiCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "840516744035-67fmigcnppuvlf4ot4imrm66ms57bo6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.socialbucks.app.testProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840516744035:android:8095ff6c9d924c64b0d956",
+        "android_client_info": {
+          "package_name": "com.socialbucks.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARlB-QLz4EoLO3v4vD_XfiwmVwgs2yiCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840516744035-e4nrg21lb65nn7g063nokapdanpmv02t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "840516744035-67fmigcnppuvlf4ot4imrm66ms57bo6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.socialbucks.app.testProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

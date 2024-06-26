@@ -199,4 +199,7 @@ class ImageConstant {
   static String imgCalendarPrimary = '$imagePath/img_calendar_primary.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+  static String male = 'assets/images/male.png';
+  static String female = 'assets/images/female.png';
+  static String genders = 'assets/images/genders.png';
 }

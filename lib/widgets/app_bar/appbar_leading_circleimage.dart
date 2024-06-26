@@ -17,8 +17,7 @@ class AppbarLeadingCircleimage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadiusStyle.roundedBorder24,
+    return GestureDetector(
       onTap: () {
         onTap?.call();
       },
